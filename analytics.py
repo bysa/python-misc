@@ -17,7 +17,11 @@ for package in packages_json:
     r = requests.get(package_url)
     package_json = r.json()
 
-    installs_30 = package_json['analytics']['install_on_request']['30d'][package_name]
+    # handle willgit:
+    if (package_name == "willgit"):
+        installs_30 = package_json['analytics']['install_on_request']['30d']['willgit --HEAD']
+    else:
+        installs_30 = package_json['analytics']['install_on_request']['30d'][package_name]
     installs_90 = package_json['analytics']['install_on_request']['90d'][package_name]
     installs_365 = package_json['analytics']['install_on_request']['365d'][package_name]
 
@@ -33,7 +37,7 @@ for package in packages_json:
 
     results.append(data)
 
-    time.sleep(r.elapsed.total_seconds())
+    # time.sleep(r.elapsed.total_seconds())
 
 t2 = time.perf_counter()
 print(f'Finished in {t2-t1} seconds')
