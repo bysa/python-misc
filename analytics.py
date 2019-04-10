@@ -35,8 +35,6 @@ for package in packages_json:
 
     time.sleep(r.elapsed.total_seconds())
 
-    break
-
 t2 = time.perf_counter()
 print(f'Finished in {t2-t1} seconds')
 
