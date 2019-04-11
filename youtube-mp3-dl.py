@@ -3,15 +3,13 @@
 from __future__ import unicode_literals
 import youtube_dl
 
-videos = [
-'https://www.youtube.com/watch?v=vaG5vKKkGJk', 
-'https://www.youtube.com/watch?v=7XXbyvdLgVM'
-]
+videos = ['https://www.youtube.com/watch?v=liEPFoj4qfw',
+          'https://www.youtube.com/watch?v=hdaccSL_Ph0', 'https://www.youtube.com/watch?v=vaG5vKKkGJk']
 
 
 ydl_opts = {
     'format': 'bestaudio/best',
-    'outtmpl':'%(title)s.%(ext)s',
+    'outtmpl': '%(title)s.%(ext)s',
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
@@ -19,9 +17,13 @@ ydl_opts = {
     }],
 }
 with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-	for video in videos:
-		ydl.download([video])
+    for video in videos:
+        ydl.download([video])
 
 
 # or run the command from terminal:
 # $youtube-dl --extract-audio --audio-format mp3 --output "%(uploader)s%(title)s.%(ext)s" http://www.youtube.com/watch?v=rtOvBOTyX00
+
+# requirement package: youtube_dl
+# ubuntu: sudo apt-get install ffmpeg
+# windows: https://stackoverflow.com/questions/30770155/ffprobe-or-avprobe-not-found-please-install-one#answer-41822439
